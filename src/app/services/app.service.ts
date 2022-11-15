@@ -72,4 +72,63 @@ export class AppService {
       this.http.post( environment.backend + '/spring/user/uploadProfilePic', data )
     )
   }
+
+  createChatroom ( chatroomName: string){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+
+    const createRequest = {
+      "chatroom_name" : chatroomName,
+      "account_id" : localStorage.getItem('userId')!
+    }
+
+    return this.http.post( environment.backend + '/spring/chatroom/create', createRequest, {headers: headers})
+  }
+
+  getChatroomUsers ( chatroomId : string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+
+    return this.http.post( environment.backend + '/spring/chatroom/chatroomUsers', chatroomId, {headers: headers})
+  }
+
+  addRoomUser ( chatroomId : string, userHandle : string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+
+    const body = {
+      'chatroomId': chatroomId,
+      'userHandle': userHandle
+    }
+
+    return this.http.post( environment.backend + '/spring/chatroom/invite', body, {headers: headers})
+  }
+
+  postChat (chatroomId: string, userId:string, post:string){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+    const body = {
+      'chatroomId': chatroomId,
+      'accountId': userId,
+      'post': post
+    }
+    return this.http.post( environment.backend + '/spring/chatroom/post', body, {headers: headers})
+  }
+
+  getChats (chatroomId: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+
+    return this.http.post( environment.backend + '/spring/chatroom/post', chatroomId, {headers: headers})
+  }
 }
