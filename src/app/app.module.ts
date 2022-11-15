@@ -14,6 +14,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ChangeEmailComponent } from './pages/change-email/change-email.component';
 import { UploadProfilePicComponent } from './pages/upload-profile-pic/upload-profile-pic.component';
+import { AddRoomUserComponent } from './pages/add-room-user/add-room-user.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UploadProfilePicComponent } from './pages/upload-profile-pic/upload-pro
     RegisterComponent,
     ProfileComponent,
     ChangeEmailComponent,
-    UploadProfilePicComponent
+    UploadProfilePicComponent,
+    AddRoomUserComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddRoomUserComponent } from './pages/add-room-user/add-room-user.component';
 import { ChangeEmailComponent } from './pages/change-email/change-email.component';
 import { ChatroomComponent } from './pages/chatroom/chatroom.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent},
   { path: 'chatroom/:chatroomId', component: ChatroomComponent},
   { path: 'emailChange', component: ChangeEmailComponent},
-  { path: 'uploadProfilePic', component: UploadProfilePicComponent}
+  { path: 'uploadProfilePic', component: UploadProfilePicComponent},
+  { path: 'addRoomUser', component: AddRoomUserComponent}
 ];
 
 @NgModule({

@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
@@ -9,9 +11,12 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  constructor(public appService: AppService, private router: Router) { }
   userChatrooms !: Promise<any> | undefined
   chatroomData !: any
+  createRoom !: FormGroup;
+
+  constructor(public appService: AppService, private router: Router, private fb: FormBuilder) { }
+  
 
   ngOnInit(): void {
     this.userChatrooms = this.appService.getUserDatabases(localStorage.getItem('userId'));
@@ -19,6 +24,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.userChatrooms.then(data => {
         this.chatroomData = data
       })
+    this.createRoom = this.fb.group({
+      chatroomName: this.fb.control<string>('', [Validators.required]),
+    })
+
     }
   }
   ngOnDestroy(): void {
@@ -26,5 +35,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   enterChatroom(chatroomId: string){
     this.router.navigateByUrl('/chatroom/' + chatroomId)
+  }
+  
+  createChatroom(){
+    let createResponse:Promise<any> = firstValueFrom(this.appService.createChatroom(this.createRoom.value.chatroomName))
+    createResponse.then((data)=> {
+      console.log(data)
+    })
   }
 }

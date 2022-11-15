@@ -1,0 +1,8 @@
+<form [formGroup]="addUserForm" (ngSubmit)="addRoomUser()">
+  <div class="d-grid gap-2 w-50 mx-auto">	
+    <div class="form-outline mb-4 mx-auto">
+      <input type="text" id="accountHandle" class="form-control" formControlName="accountHandle" placeholder="User Handle" />
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="this.addUserForm.invalid">Add User</button>
+  </div>
+</form>

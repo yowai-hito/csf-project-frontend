@@ -5,8 +5,15 @@
       <p class="text-center font-weight-light">Chatroom Name : {{room.chatroomName}}</p>
       <p class="text-center">Id: {{room.chatroomId}}</p>
     </div>
-    
   </span>
+  <form [formGroup]="createRoom" (ngSubmit)="createChatroom()">
+    <div class="d-grid gap-2 w-50 mx-auto">	
+      <div class="form-outline mb-4 mx-auto">
+        <input type="text" id="chatroomName" class="form-control" formControlName="chatroomName" placeholder="Chatroom Name" />
+      </div>
+      <button type="submit" class="btn btn-primary" >Create New Chatroom</button>
+    </div>
+  </form>
 </div>
 
 <ng-template #unauthenticated class="mb-4 w-50 mx-auto">
