@@ -1,0 +1,32 @@
+<form [formGroup] = "emailForm" (ngSubmit)="changeEmail()">
+  <div class="alert alert-danger w-50 mx-auto" *ngIf="error" role="alert" >
+    Email already exists.
+  </div>  
+
+  <!-- Old Email input -->
+  <div class="form-outline mb-4 w-50 mx-auto">
+		<label class="form-label" for="username">Email:</label>
+    <input type="text" id="oldEmail" class="form-control" [placeholder]="currentEmail"  disabled/>
+  </div>
+
+  <!-- New Email input -->
+  <div class="form-outline mb-4 w-50 mx-auto">
+		<label class="form-label" for="username">Handle:</label>
+    <input type="text" id="newEmail" class="form-control" formControlName="newEmail" placeholder="New Email" />
+  </div>
+
+  <!-- Confirm New Email input -->
+  <div class="form-outline mb-4 w-50 mx-auto">
+		<label class="form-label" for="password">Password:</label>
+    <input type="password" id="confirmNewEmail" class="form-control" formControlName="confirmNewEmail" placeholder="Confirm New Email"/>
+  </div>
+
+  <div class="alert alert-danger w-50 mx-auto" *ngIf="emailForm.hasError('notSame')" role="alert" >
+    Emails do not match
+  </div>  
+  <!-- Submit button -->
+  <div class="d-grid gap-2 w-50 mx-auto">	
+		<button type="button" class="btn btn-primary" [disabled]="this.emailForm.invalid" type="submit">Register</button>
+	</div>
+
+</form>

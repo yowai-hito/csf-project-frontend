@@ -1,0 +1,14 @@
+<div *ngIf="this.appService.authenticated; else unauthenticated" class="mb-4 w-50 mx-auto">
+  <br/><br/>
+  <span *ngIf="this.chatroomData">
+    <div *ngFor="let room of chatroomData" class="border border-secondary rounded-pill mb-4" (click)="enterChatroom(room.chatroomId)">
+      <p class="text-center font-weight-light">Chatroom Name : {{room.chatroomName}}</p>
+      <p class="text-center">Id: {{room.chatroomId}}</p>
+    </div>
+    
+  </span>
+</div>
+
+<ng-template #unauthenticated class="mb-4 w-50 mx-auto">
+  Please Login.
+</ng-template>
